@@ -6,7 +6,7 @@
     <style>
       body {
         font-family: 'Inter', sans-serif;
-        max-width: 800px;
+        max-width: 900px;
         margin: auto;
         padding: 20px;
         line-height: 1.6;
@@ -17,20 +17,53 @@
         padding: 60px 20px;
         background: linear-gradient(to right, #0077b6, #90e0ef);
         color: white;
-        margin-bottom: 40px;
-        border-radius: 10px;
+        margin-bottom: 30px;
+        border-radius: 12px;
       }
 
       h1, h2 {
-        color: #333;
+        color: #222;
+        margin: 0 0 10px 0;
+      }
+
+      .sub {
+        opacity: 0.95;
+        margin-top: 10px;
+      }
+
+      .section-title {
+        margin: 30px 0 12px 0;
+        color: #222;
       }
 
       .project {
-        margin-bottom: 30px;
+        margin-bottom: 18px;
         background: #f9f9f9;
-        padding: 20px;
+        padding: 18px 18px;
         border-left: 5px solid #0077b6;
-        border-radius: 5px;
+        border-radius: 8px;
+      }
+
+      .meta {
+        color: #444;
+        margin: 8px 0 0 0;
+        font-size: 0.95rem;
+      }
+
+      .tags {
+        margin-top: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .tag {
+        font-size: 0.85rem;
+        background: #e9f6fb;
+        color: #0a4a60;
+        padding: 4px 10px;
+        border-radius: 999px;
+        border: 1px solid #cfeef7;
       }
 
       a {
@@ -38,22 +71,44 @@
         text-decoration: none;
       }
 
+      a:hover {
+        text-decoration: underline;
+      }
+
       .btn {
         display: inline-block;
         background: #0077b6;
         color: white;
-        padding: 10px 20px;
-        margin: 10px 0;
+        padding: 10px 18px;
+        margin: 14px 0 0 0;
         text-decoration: none;
-        border-radius: 5px;
+        border-radius: 8px;
+        font-weight: 700;
+      }
+
+      .btn.secondary {
+        background: rgba(255,255,255,0.18);
+        border: 1px solid rgba(255,255,255,0.35);
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 14px;
       }
 
       footer {
         text-align: center;
-        padding: 20px;
+        padding: 18px;
         background-color: #eee;
-        margin-top: 60px;
-        border-radius: 10px;
+        margin-top: 40px;
+        border-radius: 12px;
+      }
+
+      @media (min-width: 760px) {
+        .grid {
+          grid-template-columns: 1fr 1fr;
+        }
       }
     </style>
   </head>
@@ -61,31 +116,93 @@
   <body>
     <section class="hero">
       <h1>Amr Gawesh</h1>
-      <p>Data Analyst | SQL • Tableau • Power BI</p>
-      <p>Turning data into decisions</p>
-      <a href="Amr%20Gawesh%20CV.pdf" download class="btn">📄 Download My CV</a>
+      <p class="sub"><strong>Junior Data Analyst</strong> | Power BI • SQL • Excel</p>
+      <p class="sub">Reporting dashboards, data cleaning, and trend analysis.</p>
+      <a href="Amr%20Gawesh%20CV.pdf" download class="btn">Download My CV</a>
+      <div>
+        <a href="https://www.linkedin.com/in/amr-gawesh" target="_blank" class="btn secondary">LinkedIn</a>
+        <a href="https://github.com/Gaw31" target="_blank" class="btn secondary">GitHub</a>
+      </div>
     </section>
 
+    <h2 class="section-title">Featured Projects</h2>
+
     <div class="project">
-  <h2> Chinook Music Store SQL Analysis</h2>
-  <p>Performed advanced SQL queries to analyze customer behavior, sales by genre, and top-spending customers from the Chinook database. Used joins, aggregations, and subqueries.</p>
-  <p><a href="https://github.com/Gaw31/SQL/blob/main/Chinook%20Data" target="_blank">View SQL Code on GitHub</a></p>
-</div>
+      <h2>Layoffs Data Cleaning Pipeline (SQL)</h2>
+      <p>
+        Built a structured cleaning workflow to prepare a real-world layoffs dataset for reporting:
+        removed duplicates, standardized fields, handled nulls, validated quality checks, and created reporting views for dashboards.
+      </p>
+      <p class="meta"><strong>Focus:</strong> Data accuracy • Cleaning • Reporting-ready views</p>
+      <div class="tags">
+        <span class="tag">Sql</span>
+        <span class="tag">Data cleaning</span>
+        <span class="tag">Reporting views</span>
+      </div>
+      <p><a href="https://github.com/Gaw31/SQL" target="_blank">View Project on GitHub</a></p>
+    </div>
 
-<div class="project">
-  <h2> Superstore Executive Overview Dashboard</h2>
-  <p>Visualized global vaccination rates over time by country income group using Tableau.</p>
-  <p><a href="https://public.tableau.com/app/profile/amr.gawesh/viz/SuperstoreExecutiveOverview_17130973928930/ExecutiveOverview" target="_blank">View Dashboard</a></p>
-</div>
+    <div class="grid">
+      <div class="project">
+        <h2>Customer & Order Analytics (SQL Reporting)</h2>
+        <p>
+          Queried customer and monthly sales tables to produce KPI-style outputs:
+          order counts, product revenue, location performance, and customer spend patterns.
+          Designed the queries to support dashboarding and recurring reporting.
+        </p>
+        <p class="meta"><strong>Focus:</strong> Kpis • Revenue • Trend-style outputs</p>
+        <div class="tags">
+          <span class="tag">Sql</span>
+          <span class="tag">Kpi reporting</span>
+          <span class="tag">Joins</span>
+        </div>
+        <p><a href="https://github.com/Gaw31/SQL" target="_blank">View Project on GitHub</a></p>
+      </div>
 
-<div class="project">
-  <h2> Product & Order Analytics Dashboard</h2>
-  <p>Tracked revenue by product, region, and account to identify sales leaders and underperforming stores.</p>
-  <p><a href="https://public.tableau.com/app/profile/amr.gawesh/viz/ProductOrderAnalyticsProject_17130599877710/ProductOrderAnalyticsProject" target="_blank">View Dashboard</a></p>
-</div>
+      <div class="project">
+        <h2>Chinook Music Store Analysis (SQL)</h2>
+        <p>
+          Analyzed customer behavior and sales performance using joins and aggregations.
+          Built queries for top customers, sales by artist/genre, and reporting-ready outputs.
+        </p>
+        <p class="meta"><strong>Focus:</strong> Sales insights • Customer analysis</p>
+        <div class="tags">
+          <span class="tag">Sql</span>
+          <span class="tag">Aggregations</span>
+          <span class="tag">Business questions</span>
+        </div>
+        <p><a href="https://github.com/Gaw31/SQL/blob/main/Chinook%20Data" target="_blank">View SQL Code on GitHub</a></p>
+      </div>
+    </div>
+
+    <h2 class="section-title">Power BI</h2>
+
+    <div class="project">
+      <h2>Power BI Dashboards (In Progress)</h2>
+      <p>
+        I am converting my SQL reporting outputs into Power BI dashboards (Power Query + Data Modeling + DAX)
+        to track KPIs, trends, and performance across projects.
+      </p>
+      <p class="meta">
+        <strong>Planned dashboards:</strong> Layoffs overview • Customer & Order performance • Revenue by product/location
+      </p>
+      <div class="tags">
+        <span class="tag">Power bi</span>
+        <span class="tag">Power query</span>
+        <span class="tag">Dax</span>
+        <span class="tag">Data modeling</span>
+      </div>
+      <!-- Replace the links below when you publish your Power BI reports/screenshots -->
+      <p class="meta">
+        Add your Power BI links here:
+        <br>
+        <a href="#" target="_blank">Layoffs Dashboard (Power BI)</a> •
+        <a href="#" target="_blank">Orders Dashboard (Power BI)</a>
+      </p>
+    </div>
 
     <footer>
-      <p>📫 amrsgaw@yahoo.com | 💼 <a href="https://www.linkedin.com/in/amr-gawesh" target="_blank">LinkedIn</a></p>
+      <p>Contact: amrsgaw@yahoo.com | <a href="https://www.linkedin.com/in/amr-gawesh" target="_blank">LinkedIn</a></p>
     </footer>
   </body>
 </html>
