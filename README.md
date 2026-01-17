@@ -1,2 +1,2 @@
 # Gaw31.github.io
-My data portfolio website – SQL, Excel, Tableau, Power BI projects
+My data portfolio website – SQL and Power BI projects
