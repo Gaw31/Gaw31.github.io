@@ -1,208 +1,401 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Amr Gawesh | Data Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-      body {
-        font-family: 'Inter', sans-serif;
-        max-width: 900px;
-        margin: auto;
-        padding: 20px;
-        line-height: 1.6;
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Amr Gawesh | Data Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg: #0b1220;
+      --panel: rgba(255,255,255,0.06);
+      --panel2: rgba(255,255,255,0.08);
+      --text: rgba(255,255,255,0.92);
+      --muted: rgba(255,255,255,0.68);
+      --line: rgba(255,255,255,0.12);
+      --accent: #55d6ff;
+      --accent2:#8a7dff;
+      --shadow: 0 12px 40px rgba(0,0,0,0.35);
+      --radius: 18px;
+    }
+
+    *{box-sizing:border-box}
+    html, body{height:100%}
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(1200px 600px at 15% 10%, rgba(85,214,255,0.14), transparent 60%),
+        radial-gradient(900px 500px at 85% 15%, rgba(138,125,255,0.14), transparent 55%),
+        radial-gradient(900px 700px at 50% 100%, rgba(255,255,255,0.06), transparent 60%),
+        var(--bg);
+    }
+
+    /* Keep everything “one screen” */
+    .wrap{
+      min-height: 100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding: 22px;
+    }
+
+    .shell{
+      width: min(1100px, 100%);
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+      border: 1px solid var(--line);
+      border-radius: calc(var(--radius) + 8px);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+
+    .topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding: 18px 20px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(0,0,0,0.10);
+      backdrop-filter: blur(10px);
+    }
+
+    .brand{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      min-width: 240px;
+    }
+
+    .dot{
+      width: 12px; height:12px; border-radius: 999px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 0 20px rgba(85,214,255,0.35);
+    }
+
+    .name{
+      display:flex; flex-direction:column; line-height:1.1;
+    }
+    .name b{font-size: 16px;}
+    .name span{font-size: 12.5px; color: var(--muted);}
+
+    .actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.04);
+      color: var(--text);
+      text-decoration:none;
+      font-weight:600;
+      font-size: 13px;
+      transition: transform .15s ease, background .15s ease, border-color .15s ease;
+      white-space:nowrap;
+    }
+    .btn:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,0.07);
+      border-color: rgba(255,255,255,0.18);
+    }
+
+    .btn.primary{
+      border: none;
+      background: linear-gradient(135deg, rgba(85,214,255,0.90), rgba(138,125,255,0.90));
+      color: #08101f;
+    }
+
+    .content{
+      padding: 18px 20px 16px;
+      display:grid;
+      grid-template-columns: 1.1fr 1.6fr;
+      gap: 16px;
+    }
+
+    .hero{
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.04);
+      border-radius: var(--radius);
+      padding: 16px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .hero:before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background: radial-gradient(500px 120px at 10% 10%, rgba(85,214,255,0.22), transparent 60%),
+                  radial-gradient(500px 140px at 80% 20%, rgba(138,125,255,0.22), transparent 60%);
+      pointer-events:none;
+      opacity:.8;
+    }
+
+    .hero > *{position:relative}
+
+    h1{
+      margin: 4px 0 6px;
+      font-size: 26px;
+      letter-spacing: -0.5px;
+    }
+    .subtitle{
+      margin:0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .chips{
+      margin-top: 12px;
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+    }
+    .chip{
+      font-size: 12px;
+      color: rgba(255,255,255,0.86);
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.03);
+    }
+
+    .projects{
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.03);
+      border-radius: var(--radius);
+      padding: 12px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      min-height: 260px;
+    }
+
+    .projects-head{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding: 4px 6px 8px;
+    }
+    .projects-head b{font-size: 13px; color: rgba(255,255,255,0.85);}
+    .projects-head span{font-size: 12px; color: var(--muted);}
+
+    /* Horizontal row of cards = no vertical scrolling */
+    .cards{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(240px, 1fr));
+      gap: 10px;
+    }
+
+    .card{
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: rgba(0,0,0,0.18);
+      padding: 12px;
+      display:flex;
+      flex-direction:column;
+      gap: 10px;
+      min-height: 180px;
+    }
+
+    .card h3{
+      margin:0;
+      font-size: 14px;
+      letter-spacing: -0.2px;
+    }
+    .card p{
+      margin:0;
+      color: var(--muted);
+      font-size: 12.5px;
+      line-height: 1.5;
+    }
+
+    details{
+      border-top: 1px dashed rgba(255,255,255,0.14);
+      padding-top: 10px;
+    }
+    summary{
+      cursor:pointer;
+      font-weight:600;
+      font-size: 12.5px;
+      color: rgba(255,255,255,0.84);
+      list-style:none;
+    }
+    summary::-webkit-details-marker{display:none}
+    .tags{
+      display:flex;
+      gap:6px;
+      flex-wrap:wrap;
+      margin-top:8px;
+    }
+    .tag{
+      font-size: 11.5px;
+      padding: 6px 8px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.10);
+      color: rgba(255,255,255,0.82);
+    }
+
+    .card a{
+      color: rgba(255,255,255,0.90);
+      text-decoration:none;
+      font-weight:700;
+      font-size: 12.5px;
+    }
+    .card a:hover{ text-decoration: underline; }
+
+    .footer{
+      padding: 14px 20px;
+      border-top: 1px solid var(--line);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 12.5px;
+    }
+
+    .footer a{ color: rgba(255,255,255,0.86); text-decoration:none; font-weight:700; }
+    .footer a:hover{ text-decoration:underline; }
+
+    /* Responsive: still “mostly one page”, cards become swipe row */
+    @media (max-width: 980px){
+      .content{ grid-template-columns: 1fr; }
+      .cards{
+        grid-template-columns: repeat(3, minmax(260px, 1fr));
+        overflow-x: auto;
+        padding-bottom: 6px;
+        scroll-snap-type: x mandatory;
       }
+      .card{ scroll-snap-align: start; }
+    }
+  </style>
+</head>
 
-      .hero {
-        text-align: center;
-        padding: 60px 20px;
-        background: linear-gradient(to right, #0077b6, #90e0ef);
-        color: white;
-        margin-bottom: 30px;
-        border-radius: 12px;
-      }
-
-      h1, h2 {
-        color: #222;
-        margin: 0 0 10px 0;
-      }
-
-      .sub {
-        opacity: 0.95;
-        margin-top: 10px;
-      }
-
-      .section-title {
-        margin: 30px 0 12px 0;
-        color: #222;
-      }
-
-      .project {
-        margin-bottom: 18px;
-        background: #f9f9f9;
-        padding: 18px 18px;
-        border-left: 5px solid #0077b6;
-        border-radius: 8px;
-      }
-
-      .meta {
-        color: #444;
-        margin: 8px 0 0 0;
-        font-size: 0.95rem;
-      }
-
-      .tags {
-        margin-top: 10px;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-      }
-
-      .tag {
-        font-size: 0.85rem;
-        background: #e9f6fb;
-        color: #0a4a60;
-        padding: 4px 10px;
-        border-radius: 999px;
-        border: 1px solid #cfeef7;
-      }
-
-      a {
-        color: #007acc;
-        text-decoration: none;
-      }
-
-      a:hover {
-        text-decoration: underline;
-      }
-
-      .btn {
-        display: inline-block;
-        background: #0077b6;
-        color: white;
-        padding: 10px 18px;
-        margin: 14px 0 0 0;
-        text-decoration: none;
-        border-radius: 8px;
-        font-weight: 700;
-      }
-
-      .btn.secondary {
-        background: rgba(255,255,255,0.18);
-        border: 1px solid rgba(255,255,255,0.35);
-      }
-
-      .grid {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 14px;
-      }
-
-      footer {
-        text-align: center;
-        padding: 18px;
-        background-color: #eee;
-        margin-top: 40px;
-        border-radius: 12px;
-      }
-
-      @media (min-width: 760px) {
-        .grid {
-          grid-template-columns: 1fr 1fr;
-        }
-      }
-    </style>
-  </head>
-
-  <body>
-    <section class="hero">
-      <h1>Amr Gawesh</h1>
-      <p class="sub"><strong>Junior Data Analyst</strong> | Power BI • SQL • Excel</p>
-      <p class="sub">Reporting dashboards, data cleaning, and trend analysis.</p>
-      <a href="Amr%20Gawesh%20CV.pdf" download class="btn">Download My CV</a>
-      <div>
-        <a href="https://www.linkedin.com/in/amr-gawesh" target="_blank" class="btn secondary">LinkedIn</a>
-        <a href="https://github.com/Gaw31" target="_blank" class="btn secondary">GitHub</a>
-      </div>
-    </section>
-
-    <h2 class="section-title">Featured Projects</h2>
-
-    <div class="project">
-      <h2>Layoffs Data Cleaning Pipeline (SQL)</h2>
-      <p>
-        Built a structured cleaning workflow to prepare a real-world layoffs dataset for reporting:
-        removed duplicates, standardized fields, handled nulls, validated quality checks, and created reporting views for dashboards.
-      </p>
-      <p class="meta"><strong>Focus:</strong> Data accuracy • Cleaning • Reporting-ready views</p>
-      <div class="tags">
-        <span class="tag">Sql</span>
-        <span class="tag">Data cleaning</span>
-        <span class="tag">Reporting views</span>
-      </div>
-      <p><a href="https://github.com/Gaw31/SQL" target="_blank">View Project on GitHub</a></p>
-    </div>
-
-    <div class="grid">
-      <div class="project">
-        <h2>Customer & Order Analytics (SQL Reporting)</h2>
-        <p>
-          Queried customer and monthly sales tables to produce KPI-style outputs:
-          order counts, product revenue, location performance, and customer spend patterns.
-          Designed the queries to support dashboarding and recurring reporting.
-        </p>
-        <p class="meta"><strong>Focus:</strong> Kpis • Revenue • Trend-style outputs</p>
-        <div class="tags">
-          <span class="tag">Sql</span>
-          <span class="tag">Kpi reporting</span>
-          <span class="tag">Joins</span>
+<body>
+  <div class="wrap">
+    <div class="shell">
+      <div class="topbar">
+        <div class="brand">
+          <div class="dot"></div>
+          <div class="name">
+            <b>Amr Gawesh</b>
+            <span>Junior Data Analyst · Power BI · SQL · Excel</span>
+          </div>
         </div>
-        <p><a href="https://github.com/Gaw31/SQL" target="_blank">View Project on GitHub</a></p>
-      </div>
 
-      <div class="project">
-        <h2>Chinook Music Store Analysis (SQL)</h2>
-        <p>
-          Analyzed customer behavior and sales performance using joins and aggregations.
-          Built queries for top customers, sales by artist/genre, and reporting-ready outputs.
-        </p>
-        <p class="meta"><strong>Focus:</strong> Sales insights • Customer analysis</p>
-        <div class="tags">
-          <span class="tag">Sql</span>
-          <span class="tag">Aggregations</span>
-          <span class="tag">Business questions</span>
+        <div class="actions">
+          <!-- Update CV link to your actual file path -->
+          <a class="btn primary" href="YOUR_CV_LINK_HERE" target="_blank" rel="noopener">Download CV</a>
+          <a class="btn" href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn" href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
         </div>
-        <p><a href="https://github.com/Gaw31/SQL/blob/main/Chinook%20Data" target="_blank">View SQL Code on GitHub</a></p>
+      </div>
+
+      <div class="content">
+        <section class="hero">
+          <h1>Data projects that ship.</h1>
+          <p class="subtitle">
+            I build reporting-ready datasets and dashboards: clean data, design metrics, and communicate insights.
+          </p>
+
+          <div class="chips">
+            <span class="chip">SQL cleaning pipelines</span>
+            <span class="chip">KPI reporting queries</span>
+            <span class="chip">Power BI modeling + DAX</span>
+          </div>
+        </section>
+
+        <section class="projects">
+          <div class="projects-head">
+            <b>Featured projects</b>
+            <span>Skim fast — open details only if needed</span>
+          </div>
+
+          <div class="cards">
+            <article class="card">
+              <h3>Layoffs Data Cleaning Pipeline (SQL)</h3>
+              <p>End-to-end cleaning workflow to make a real dataset reporting-ready.</p>
+
+              <details>
+                <summary>Details</summary>
+                <p style="margin-top:8px">
+                  Removed duplicates, standardized fields, handled nulls, validated quality checks, and created views for dashboarding.
+                </p>
+                <div class="tags">
+                  <span class="tag">Cleaning</span><span class="tag">QA checks</span><span class="tag">Views</span>
+                </div>
+              </details>
+
+              <div style="margin-top:auto; padding-top:8px">
+                <a href="https://github.com/Gaw31/SQL/blob/main/World_layoffs%20Projects%20(Data%20Cleaning)" target="_blank" rel="noopener">View on GitHub →</a>
+              </div>
+            </article>
+
+            <article class="card">
+              <h3>Customer & Order Analytics (SQL Reporting)</h3>
+              <p>KPI-style outputs for recurring reporting and dashboard foundations.</p>
+
+              <details>
+                <summary>Details</summary>
+                <p style="margin-top:8px">
+                  Built queries for order counts, revenue by product/location, spend patterns, and trend-style outputs.
+                </p>
+                <div class="tags">
+                  <span class="tag">KPIs</span><span class="tag">Joins</span><span class="tag">Trends</span>
+                </div>
+              </details>
+
+              <div style="margin-top:auto; padding-top:8px">
+                <a href="https://github.com/Gaw31/SQL/blob/main/Customer%20and%20Order%20Analytics" target="_blank" rel="noopener">View on GitHub →</a>
+              </div>
+            </article>
+
+            <article class="card">
+              <h3>Chinook Music Store Analysis (SQL)</h3>
+              <p>Business questions answered with joins, aggregations, and clear outputs.</p>
+
+              <details>
+                <summary>Details</summary>
+                <p style="margin-top:8px">
+                  Top customers, sales by artist/genre, and reporting-ready tables for visualization.
+                </p>
+                <div class="tags">
+                  <span class="tag">Aggregations</span><span class="tag">Insights</span><span class="tag">Reporting</span>
+                </div>
+              </details>
+
+              <div style="margin-top:auto; padding-top:8px">
+                <a href="https://github.com/Gaw31/SQL/blob/main/Chinook%20Data" target="_blank" rel="noopener">View on GitHub →</a>
+              </div>
+            </article>
+          </div>
+        </section>
+      </div>
+
+      <div class="footer">
+        <div>Contact: <b style="color:rgba(255,255,255,0.86)">amrsgaw@yahoo.com</b></div>
+        <div>
+          <a href="https://www.linkedin.com/in/amr-gawesh/" target="_blank" rel="noopener">LinkedIn</a>
+          &nbsp;·&nbsp;
+          <a href="https://github.com/Gaw31" target="_blank" rel="noopener">GitHub</a>
+        </div>
       </div>
     </div>
-
-    <h2 class="section-title">Power BI</h2>
-
-    <div class="project">
-      <h2>Power BI Dashboards (In Progress)</h2>
-      <p>
-        I am converting my SQL reporting outputs into Power BI dashboards (Power Query + Data Modeling + DAX)
-        to track KPIs, trends, and performance across projects.
-      </p>
-      <p class="meta">
-        <strong>Planned dashboards:</strong> Layoffs overview • Customer & Order performance • Revenue by product/location
-      </p>
-      <div class="tags">
-        <span class="tag">Power bi</span>
-        <span class="tag">Power query</span>
-        <span class="tag">Dax</span>
-        <span class="tag">Data modeling</span>
-      </div>
-      <!-- Replace the links below when you publish your Power BI reports/screenshots -->
-      <p class="meta">
-        Add your Power BI links here:
-        <br>
-        <a href="#" target="_blank">Layoffs Dashboard (Power BI)</a> •
-        <a href="#" target="_blank">Orders Dashboard (Power BI)</a>
-      </p>
-    </div>
-
-    <footer>
-      <p>Contact: amrsgaw@yahoo.com | <a href="https://www.linkedin.com/in/amr-gawesh" target="_blank">LinkedIn</a></p>
-    </footer>
-  </body>
+  </div>
+</body>
 </html>
