@@ -35,7 +35,6 @@
         var(--bg);
     }
 
-    /* Keep everything “one screen” */
     .wrap{
       min-height: 100vh;
       display:flex;
@@ -61,6 +60,7 @@
       border-bottom: 1px solid var(--line);
       background: rgba(0,0,0,0.10);
       backdrop-filter: blur(10px);
+      gap: 12px;
     }
 
     .brand{
@@ -193,7 +193,6 @@
     .projects-head b{font-size: 13px; color: rgba(255,255,255,0.85);}
     .projects-head span{font-size: 12px; color: var(--muted);}
 
-    /* Horizontal row of cards = no vertical scrolling */
     .cards{
       display:grid;
       grid-template-columns: repeat(3, minmax(240px, 1fr));
@@ -235,6 +234,7 @@
       list-style:none;
     }
     summary::-webkit-details-marker{display:none}
+
     .tags{
       display:flex;
       gap:6px;
@@ -258,6 +258,162 @@
     }
     .card a:hover{ text-decoration: underline; }
 
+    /* --- Certificates + Excel Showcase --- */
+    .showcase{
+      margin: 0 20px 18px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.03);
+      border-radius: var(--radius);
+    }
+
+    .showcase-head{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+      padding: 4px 6px 10px;
+    }
+    .showcase-head b{ font-size: 13px; color: rgba(255,255,255,0.85); }
+    .showcase-head span{ font-size: 12px; color: var(--muted); }
+
+    .showcase-grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .showcase-card{
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: rgba(0,0,0,0.18);
+      padding: 12px;
+    }
+
+    .showcase-card h3{
+      margin:0;
+      font-size: 14px;
+      letter-spacing: -0.2px;
+    }
+
+    .cert-list{ display:flex; flex-direction:column; gap: 10px; }
+
+    .cert-item{
+      text-decoration:none;
+      color: inherit;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+      padding: 12px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.12);
+      transition: transform .15s ease, background .15s ease, border-color .15s ease;
+    }
+    .cert-item:hover{
+      transform: translateY(-2px);
+      background: rgba(255,255,255,0.06);
+      border-color: rgba(85,214,255,0.28);
+    }
+    .cert-title{ font-weight: 700; font-size: 12.8px; }
+    .cert-meta{ font-size: 12px; opacity: .75; margin-top: 2px; }
+    .arrow{ font-size: 18px; opacity: .75; }
+
+    .excel-shot{
+      position: relative;
+      display:block;
+      overflow:hidden;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.12);
+      text-decoration:none;
+      background: rgba(0,0,0,0.18);
+    }
+    .excel-shot img{
+      width: 100%;
+      height: 210px;
+      object-fit: cover;
+      display:block;
+      transform: scale(1.02);
+      transition: transform .18s ease;
+    }
+    .excel-shot:hover img{ transform: scale(1.06); }
+
+    .shot-overlay{
+      position:absolute;
+      left:0; right:0; bottom:0;
+      padding: 12px;
+      background: linear-gradient(to top, rgba(0,0,0,0.60), rgba(0,0,0,0));
+      color: white;
+    }
+    .shot-title{ font-weight: 700; }
+    .shot-meta{ font-size: 12px; opacity: .9; margin-top: 2px; }
+
+    .mini{
+      margin-top: 10px;
+      display:flex;
+      gap: 8px;
+      flex-wrap:wrap;
+    }
+    .mini-chip{
+      font-size: 11.5px;
+      padding: 6px 8px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.10);
+      color: rgba(255,255,255,0.82);
+    }
+
+    /* --- Power BI Dashboard Embed --- */
+    .dashboard{
+      margin: 0 20px 18px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.03);
+      border-radius: var(--radius);
+    }
+
+    .dashboard-head{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding: 4px 6px 10px;
+    }
+
+    .dashboard-head b{
+      font-size: 13px;
+      color: rgba(255,255,255,0.85);
+    }
+
+    .dashboard-head span{
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .embed-wrap{
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%;
+      border-radius: 16px;
+      overflow:hidden;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(0,0,0,0.18);
+    }
+
+    .embed-wrap iframe{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+    }
+
+    .embed-actions{
+      display:flex;
+      justify-content:flex-end;
+      padding: 12px 6px 0;
+    }
+
     .footer{
       padding: 14px 20px;
       border-top: 1px solid var(--line);
@@ -271,57 +427,8 @@
 
     .footer a{ color: rgba(255,255,255,0.86); text-decoration:none; font-weight:700; }
     .footer a:hover{ text-decoration:underline; }
-/* --- Power BI Dashboard Embed --- */
-.dashboard{
-  margin: 0 20px 18px;
-  padding: 14px;
-  border: 1px solid var(--line);
-  background: rgba(255,255,255,0.03);
-  border-radius: var(--radius);
-}
 
-.dashboard-head{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
-  padding: 4px 6px 10px;
-}
-
-.dashboard-head b{
-  font-size: 13px;
-  color: rgba(255,255,255,0.85);
-}
-
-.dashboard-head span{
-  font-size: 12px;
-  color: var(--muted);
-}
-
-.embed-wrap{
-  position: relative;
-  width: 100%;
-  padding-top: 56.25%; /* 16:9 */
-  border-radius: 16px;
-  overflow:hidden;
-  border: 1px solid rgba(255,255,255,0.12);
-  background: rgba(0,0,0,0.18);
-}
-
-.embed-wrap iframe{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-}
-
-.embed-actions{
-  display:flex;
-  justify-content:flex-end;
-  padding: 12px 6px 0;
-}
-
-    /* Responsive: still “mostly one page”, cards become swipe row */
+    /* Responsive */
     @media (max-width: 980px){
       .content{ grid-template-columns: 1fr; }
       .cards{
@@ -331,124 +438,8 @@
         scroll-snap-type: x mandatory;
       }
       .card{ scroll-snap-align: start; }
+      .showcase-grid{ grid-template-columns: 1fr; }
     }
-
-    /* --- Certificates + Excel Showcase --- */
-.showcase{
-  margin: 0 20px 18px;
-  padding: 14px;
-  border: 1px solid var(--line);
-  background: rgba(255,255,255,0.03);
-  border-radius: var(--radius);
-}
-
-.showcase-head{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
-  padding: 4px 6px 10px;
-}
-.showcase-head b{ font-size: 13px; color: rgba(255,255,255,0.85); }
-.showcase-head span{ font-size: 12px; color: var(--muted); }
-
-.showcase-grid{
-  display:grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-}
-
-.showcase-card{
-  border-radius: 16px;
-  border: 1px solid var(--line);
-  background: rgba(0,0,0,0.18);
-  padding: 12px;
-}
-
-.showcase-card-head{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap: 10px;
-  margin-bottom: 10px;
-}
-.showcase-card h3{
-  margin:0;
-  font-size: 14px;
-  letter-spacing: -0.2px;
-}
-
-.cert-list{ display:flex; flex-direction:column; gap: 10px; }
-
-.cert-item{
-  text-decoration:none;
-  color: inherit;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap: 12px;
-  padding: 12px;
-  border-radius: 14px;
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.12);
-  transition: transform .15s ease, background .15s ease, border-color .15s ease;
-}
-.cert-item:hover{
-  transform: translateY(-2px);
-  background: rgba(255,255,255,0.06);
-  border-color: rgba(85,214,255,0.28);
-}
-.cert-title{ font-weight: 700; font-size: 12.8px; }
-.cert-meta{ font-size: 12px; opacity: .75; margin-top: 2px; }
-.arrow{ font-size: 18px; opacity: .75; }
-
-.excel-shot{
-  position: relative;
-  display:block;
-  overflow:hidden;
-  border-radius: 14px;
-  border: 1px solid rgba(255,255,255,0.12);
-  text-decoration:none;
-}
-.excel-shot img{
-  width: 100%;
-  height: 210px;
-  object-fit: cover;
-  display:block;
-  transform: scale(1.02);
-  transition: transform .18s ease;
-}
-.excel-shot:hover img{ transform: scale(1.06); }
-
-.shot-overlay{
-  position:absolute;
-  left:0; right:0; bottom:0;
-  padding: 12px;
-  background: linear-gradient(to top, rgba(0,0,0,0.60), rgba(0,0,0,0));
-  color: white;
-}
-.shot-title{ font-weight: 700; }
-.shot-meta{ font-size: 12px; opacity: .9; margin-top: 2px; }
-
-.mini{
-  margin-top: 10px;
-  display:flex;
-  gap: 8px;
-  flex-wrap:wrap;
-}
-.mini-chip{
-  font-size: 11.5px;
-  padding: 6px 8px;
-  border-radius: 999px;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.10);
-  color: rgba(255,255,255,0.82);
-}
-
-/* responsive */
-@media (max-width: 980px){
-  .showcase-grid{ grid-template-columns: 1fr; }
-}
   </style>
 </head>
 
@@ -465,10 +456,10 @@
         </div>
 
         <div class="actions">
-          <!-- Update CV link to your actual file path -->
-          <a class="btn primary" href="https://github.com/Gaw31/Gaw31.github.io/blob/main/Amr%20Gawesh%20CV.pdf" target="_blank" rel="noopener">Download CV</a>
-          <a class="btn" href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
-          <a class="btn" href="https://github.com/Gaw31/SQL" target="_blank" rel="noopener">GitHub</a>
+          <!-- Direct links to files in your repo -->
+          <a class="btn primary" href="assets/files/Amr_Gawesh_CV.pdf" target="_blank" rel="noopener">Download CV</a>
+          <a class="btn" href="https://www.linkedin.com/in/amr-gawesh/" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn" href="https://github.com/Gaw31" target="_blank" rel="noopener">GitHub</a>
         </div>
       </div>
 
@@ -552,67 +543,69 @@
           </div>
         </section>
       </div>
-      
-<!-- Certificates + Excel Showcase -->
-<section class="showcase">
-  <div class="showcase-head">
-    <div>
-      <b>Certificates & Excel</b><br>
-      <span>Quick proof + one screenshot project.</span>
-    </div>
-    <a class="btn" href="YOUR_CERTS_FOLDER_LINK" target="_blank" rel="noopener">Open all →</a>
-  </div>
 
-  <div class="showcase-grid">
-    <!-- Certificates -->
-    <div class="showcase-card">
-      <div class="showcase-card-head">
-        <h3>Certificates</h3>
-        <span class="pill">Verified</span>
-      </div>
-
-      <div class="cert-list">
-        <a class="cert-item" href="CERT_LINK_1" target="_blank" rel="noopener">
+      <!-- Certificates + Excel -->
+      <section class="showcase">
+        <div class="showcase-head">
           <div>
-            <div class="cert-title">PL-300 / Power BI (Pending)</div>
-            <div class="cert-meta">Microsoft · 2026</div>
+            <b>Certificates & Excel</b><br>
+            <span>Quick proof + one Excel project snapshot.</span>
           </div>
-          <span class="arrow">↗</span>
-        </a>
-
-        <a class="cert-item" href="https://drive.google.com/file/d/143y91T7gY8tcggbgW1R7aX_oZFA-a_NZ/view?usp=drive_link" target="_blank" rel="noopener">
-          <div>
-            <div class="cert-title">SQL Certificate (example)</div>
-            <div class="cert-meta">Provider · 2025</div>
-          </div>
-          <span class="arrow">↗</span>
-        </a>
-      </div>
-    </div>
-
-    <!-- Excel project -->
-    <div class="showcase-card">
-      <div class="showcase-card-head">
-        <h3>Excel Project</h3>
-        <span class="pill">Case Study</span>
-      </div>
-
-      <a class="excel-shot" href="YOUR_EXCEL_FILE_OR_CASESTUDY_LINK" target="_blank" rel="noopener">
-        <img src="images/excel-project.png" alt="Excel project screenshot" />
-        <div class="shot-overlay">
-          <div class="shot-title">Excel Dashboard (example)</div>
-          <div class="shot-meta">Click to open</div>
+          <a class="btn" href="assets/files/" target="_blank" rel="noopener">Files folder →</a>
         </div>
-      </a>
 
-      <div class="mini">
-        <span class="mini-chip">Pivots</span>
-        <span class="mini-chip">KPI Cards</span>
-        <span class="mini-chip">Clean Layout</span>
-      </div>
-    </div>
-  </div>
-</section>
+        <div class="showcase-grid">
+          <!-- Certificates -->
+          <div class="showcase-card">
+            <h3>Certificates</h3>
+            <div class="cert-list" style="margin-top:10px;">
+              <a class="cert-item" href="assets/files/Data_Analyst_Certificate.pdf" target="_blank" rel="noopener">
+                <div>
+                  <div class="cert-title">Data Analyst Certificate</div>
+                  <div class="cert-meta">PDF · Click to view</div>
+                </div>
+                <span class="arrow">↗</span>
+              </a>
+
+              <a class="cert-item" href="assets/files/Amr_Gawesh_CV.pdf" target="_blank" rel="noopener">
+                <div>
+                  <div class="cert-title">CV (PDF)</div>
+                  <div class="cert-meta">Click to view</div>
+                </div>
+                <span class="arrow">↗</span>
+              </a>
+            </div>
+
+            <div class="mini">
+              <span class="mini-chip">Proof of skills</span>
+              <span class="mini-chip">Recruiter-friendly</span>
+              <span class="mini-chip">One-click view</span>
+            </div>
+          </div>
+
+          <!-- Excel -->
+          <div class="showcase-card">
+            <div style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
+              <h3 style="margin:0;">Excel Project</h3>
+              <a class="btn" href="assets/files/Road_Accident_Dashboard.xlsx" target="_blank" rel="noopener">Download Excel</a>
+            </div>
+
+            <a class="excel-shot" href="assets/images/excel-road-accident-dashboard.png" target="_blank" rel="noopener" style="margin-top:10px;">
+              <img src="assets/images/excel-road-accident-dashboard.png" alt="Excel Road Accident Dashboard">
+              <div class="shot-overlay">
+                <div class="shot-title">Road Accident Dashboard</div>
+                <div class="shot-meta">Excel · Pivot Charts · Slicers</div>
+              </div>
+            </a>
+
+            <div class="mini">
+              <span class="mini-chip">Dashboard design</span>
+              <span class="mini-chip">Slicers</span>
+              <span class="mini-chip">KPI tracking</span>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <!-- Power BI Dashboard Embed -->
       <section class="dashboard">
@@ -622,7 +615,7 @@
             <span>Embedded interactive report (updated regularly).</span>
           </div>
 
-          <a class="btn primary" 
+          <a class="btn primary"
              href="https://app.powerbi.com/view?r=eyJrIjoiNjQ1MzBmZWItZGNkNy00MzQ3LWJlYTQtYzA1YTQ0YzVjYzI0IiwidCI6IjIzZGI2ZTA2LTA1YzQtNDg5ZC1iMTM2LWNiYTk0YThlNmYzNiIsImMiOjh9"
              target="_blank" rel="noopener">
             Open Full Screen
@@ -630,7 +623,7 @@
         </div>
 
         <div class="embed-wrap">
-          <iframe 
+          <iframe
             title="Portfolio Dashboard V1"
             src="https://app.powerbi.com/view?r=eyJrIjoiNjQ1MzBmZWItZGNkNy00MzQ3LWJlYTQtYzA1YTQ0YzVjYzI0IiwidCI6IjIzZGI2ZTA2LTA1YzQtNDg5ZC1iMTM2LWNiYTk0YThlNmYzNiIsImMiOjh9"
             frameborder="0"
@@ -639,9 +632,7 @@
         </div>
 
         <div class="embed-actions">
-          <span style="color: var(--muted); font-size:12px;">
-            Tip: Use filters inside the report to explore.
-          </span>
+          <span style="color: var(--muted); font-size:12px;">Tip: Use filters inside the report to explore.</span>
         </div>
       </section>
 
@@ -653,6 +644,7 @@
           <a href="https://github.com/Gaw31" target="_blank" rel="noopener">GitHub</a>
         </div>
       </div>
+
     </div>
   </div>
 </body>
