@@ -20,6 +20,7 @@
       --accent2:#8a7dff;
       --shadow: 0 12px 40px rgba(0,0,0,0.35);
       --radius: 18px;
+      --maxw: 1100px;
     }
 
     *{box-sizing:border-box}
@@ -35,31 +36,38 @@
         var(--bg);
     }
 
-    .wrap{
-      min-height: 100vh;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding: 22px;
+    /* Layout helpers */
+    .container{
+      width: min(var(--maxw), 100%);
+      margin: 0 auto;
+      padding: 0 22px;
     }
 
-    .shell{
-      width: min(1100px, 100%);
-      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+    section{ padding: 44px 0; }
+
+    .surface{
       border: 1px solid var(--line);
+      background: rgba(255,255,255,0.03);
       border-radius: calc(var(--radius) + 8px);
       box-shadow: var(--shadow);
-      overflow:hidden;
+      overflow: hidden;
     }
 
+    /* Topbar (now full page + sticky) */
     .topbar{
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      border-bottom: 1px solid var(--line);
+      background: rgba(0,0,0,0.30);
+      backdrop-filter: blur(12px);
+    }
+
+    .topbar-inner{
       display:flex;
       align-items:center;
       justify-content:space-between;
-      padding: 18px 20px;
-      border-bottom: 1px solid var(--line);
-      background: rgba(0,0,0,0.10);
-      backdrop-filter: blur(10px);
+      padding: 16px 0;
       gap: 12px;
     }
 
@@ -117,18 +125,12 @@
       color: #08101f;
     }
 
-    .content{
-      padding: 18px 20px 16px;
-      display:grid;
-      grid-template-columns: 1.1fr 1.6fr;
-      gap: 16px;
-    }
-
+    /* Hero (full-width section) */
     .hero{
       border: 1px solid var(--line);
       background: rgba(255,255,255,0.04);
       border-radius: var(--radius);
-      padding: 16px;
+      padding: 22px;
       position:relative;
       overflow:hidden;
     }
@@ -137,28 +139,30 @@
       content:"";
       position:absolute;
       inset:-2px;
-      background: radial-gradient(500px 120px at 10% 10%, rgba(85,214,255,0.22), transparent 60%),
-                  radial-gradient(500px 140px at 80% 20%, rgba(138,125,255,0.22), transparent 60%);
+      background: radial-gradient(700px 180px at 10% 10%, rgba(85,214,255,0.22), transparent 60%),
+                  radial-gradient(700px 200px at 80% 20%, rgba(138,125,255,0.22), transparent 60%);
       pointer-events:none;
-      opacity:.8;
+      opacity:.85;
     }
 
     .hero > *{position:relative}
 
     h1{
-      margin: 4px 0 6px;
-      font-size: 26px;
-      letter-spacing: -0.5px;
+      margin: 0 0 10px;
+      font-size: 34px;
+      letter-spacing: -0.7px;
+      line-height: 1.15;
     }
     .subtitle{
       margin:0;
       color: var(--muted);
-      font-size: 14px;
-      line-height: 1.5;
+      font-size: 15px;
+      line-height: 1.6;
+      max-width: 70ch;
     }
 
     .chips{
-      margin-top: 12px;
+      margin-top: 14px;
       display:flex;
       gap:8px;
       flex-wrap:wrap;
@@ -172,42 +176,33 @@
       background: rgba(255,255,255,0.03);
     }
 
-    .projects{
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.03);
-      border-radius: var(--radius);
-      padding: 12px;
+    /* Section headings */
+    .section-head{
       display:flex;
-      flex-direction:column;
-      gap:10px;
-      min-height: 260px;
-    }
-
-    .projects-head{
-      display:flex;
-      align-items:center;
+      align-items:flex-end;
       justify-content:space-between;
-      gap:10px;
-      padding: 4px 6px 8px;
+      gap: 12px;
+      margin-bottom: 14px;
     }
-    .projects-head b{font-size: 13px; color: rgba(255,255,255,0.85);}
-    .projects-head span{font-size: 12px; color: var(--muted);}
+    .section-head b{ font-size: 13px; color: rgba(255,255,255,0.85); }
+    .section-head span{ font-size: 12px; color: var(--muted); }
 
+    /* Projects grid */
     .cards{
       display:grid;
       grid-template-columns: repeat(3, minmax(240px, 1fr));
-      gap: 10px;
+      gap: 12px;
     }
 
     .card{
       border-radius: 16px;
       border: 1px solid var(--line);
       background: rgba(0,0,0,0.18);
-      padding: 12px;
+      padding: 14px;
       display:flex;
       flex-direction:column;
       gap: 10px;
-      min-height: 180px;
+      min-height: 190px;
     }
 
     .card h3{
@@ -218,8 +213,8 @@
     .card p{
       margin:0;
       color: var(--muted);
-      font-size: 12.5px;
-      line-height: 1.5;
+      font-size: 12.7px;
+      line-height: 1.55;
     }
 
     details{
@@ -258,25 +253,7 @@
     }
     .card a:hover{ text-decoration: underline; }
 
-    /* --- Certificates + Excel Showcase --- */
-    .showcase{
-      margin: 0 20px 18px;
-      padding: 14px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.03);
-      border-radius: var(--radius);
-    }
-
-    .showcase-head{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:12px;
-      padding: 4px 6px 10px;
-    }
-    .showcase-head b{ font-size: 13px; color: rgba(255,255,255,0.85); }
-    .showcase-head span{ font-size: 12px; color: var(--muted); }
-
+    /* Showcase */
     .showcase-grid{
       display:grid;
       grid-template-columns: 1fr 1fr;
@@ -328,10 +305,11 @@
       border: 1px solid rgba(255,255,255,0.12);
       text-decoration:none;
       background: rgba(0,0,0,0.18);
+      margin-top: 10px;
     }
     .excel-shot img{
       width: 100%;
-      height: 210px;
+      height: 230px;
       object-fit: cover;
       display:block;
       transform: scale(1.02);
@@ -364,33 +342,7 @@
       color: rgba(255,255,255,0.82);
     }
 
-    /* --- Power BI Dashboard Embed --- */
-    .dashboard{
-      margin: 0 20px 18px;
-      padding: 14px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.03);
-      border-radius: var(--radius);
-    }
-
-    .dashboard-head{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      padding: 4px 6px 10px;
-    }
-
-    .dashboard-head b{
-      font-size: 13px;
-      color: rgba(255,255,255,0.85);
-    }
-
-    .dashboard-head span{
-      font-size: 12px;
-      color: var(--muted);
-    }
-
+    /* Dashboard embed */
     .embed-wrap{
       position: relative;
       width: 100%;
@@ -400,7 +352,6 @@
       border: 1px solid rgba(255,255,255,0.12);
       background: rgba(0,0,0,0.18);
     }
-
     .embed-wrap iframe{
       position:absolute;
       inset:0;
@@ -408,45 +359,40 @@
       height:100%;
     }
 
-    .embed-actions{
-      display:flex;
-      justify-content:flex-end;
-      padding: 12px 6px 0;
-    }
-
-    .footer{
-      padding: 14px 20px;
+    /* Footer */
+    footer{
       border-top: 1px solid var(--line);
+      padding: 22px 0;
+      color: var(--muted);
+      font-size: 12.5px;
+    }
+    .footer-inner{
       display:flex;
       align-items:center;
       justify-content:space-between;
       gap: 10px;
-      color: var(--muted);
-      font-size: 12.5px;
+      flex-wrap:wrap;
     }
-
-    .footer a{ color: rgba(255,255,255,0.86); text-decoration:none; font-weight:700; }
-    .footer a:hover{ text-decoration:underline; }
+    footer a{ color: rgba(255,255,255,0.86); text-decoration:none; font-weight:700; }
+    footer a:hover{ text-decoration:underline; }
 
     /* Responsive */
     @media (max-width: 980px){
-      .content{ grid-template-columns: 1fr; }
+      h1{ font-size: 28px; }
       .cards{
-        grid-template-columns: repeat(3, minmax(260px, 1fr));
-        overflow-x: auto;
-        padding-bottom: 6px;
-        scroll-snap-type: x mandatory;
+        grid-template-columns: 1fr;
       }
-      .card{ scroll-snap-align: start; }
       .showcase-grid{ grid-template-columns: 1fr; }
     }
   </style>
 </head>
 
 <body>
-  <div class="wrap">
-    <div class="shell">
-      <div class="topbar">
+
+  <!-- Sticky Navbar -->
+  <header class="topbar">
+    <div class="container">
+      <div class="topbar-inner">
         <div class="brand">
           <div class="dot"></div>
           <div class="name">
@@ -455,192 +401,210 @@
           </div>
         </div>
 
-        <div class="actions">
-          <!-- Direct links to files in your repo -->
-<a class="cert-item" href="Amr_Gawesh_CV.pdf" target="_blank" rel="noopener">
-  <div>
-    <div class="cert-title">CV (PDF)</div>
-    <div class="cert-meta">Click to view</div>
-  </div>
-  <span class="arrow">↗</span>
-</a>
-        </div>
-      </div>
-
-      <div class="content">
-        <section class="hero">
-          <h1>Data projects that ship.</h1>
-          <p class="subtitle">
-            I build reporting-ready datasets and dashboards: clean data, design metrics, and communicate insights.
-          </p>
-
-          <div class="chips">
-            <span class="chip">SQL cleaning pipelines</span>
-            <span class="chip">KPI reporting queries</span>
-            <span class="chip">Power BI modeling + DAX</span>
-          </div>
-        </section>
-
-        <section class="projects">
-          <div class="projects-head">
-            <b>Featured projects</b>
-            <span>Skim fast — open details only if needed</span>
-          </div>
-
-          <div class="cards">
-            <article class="card">
-              <h3>Layoffs Data Cleaning Pipeline (SQL)</h3>
-              <p>End-to-end cleaning workflow to make a real dataset reporting-ready.</p>
-
-              <details>
-                <summary>Details</summary>
-                <p style="margin-top:8px">
-                  Removed duplicates, standardized fields, handled nulls, validated quality checks, and created views for dashboarding.
-                </p>
-                <div class="tags">
-                  <span class="tag">Cleaning</span><span class="tag">QA checks</span><span class="tag">Views</span>
-                </div>
-              </details>
-
-              <div style="margin-top:auto; padding-top:8px">
-                <a href="https://github.com/Gaw31/SQL/blob/main/World_layoffs%20Projects%20(Data%20Cleaning)" target="_blank" rel="noopener">View on GitHub →</a>
-              </div>
-            </article>
-
-            <article class="card">
-              <h3>Customer & Order Analytics (SQL Reporting)</h3>
-              <p>KPI-style outputs for recurring reporting and dashboard foundations.</p>
-
-              <details>
-                <summary>Details</summary>
-                <p style="margin-top:8px">
-                  Built queries for order counts, revenue by product/location, spend patterns, and trend-style outputs.
-                </p>
-                <div class="tags">
-                  <span class="tag">KPIs</span><span class="tag">Joins</span><span class="tag">Trends</span>
-                </div>
-              </details>
-
-              <div style="margin-top:auto; padding-top:8px">
-                <a href="https://github.com/Gaw31/SQL/blob/main/Customer%20and%20Order%20Analytics" target="_blank" rel="noopener">View on GitHub →</a>
-              </div>
-            </article>
-
-            <article class="card">
-              <h3>Chinook Music Store Analysis (SQL)</h3>
-              <p>Business questions answered with joins, aggregations, and clear outputs.</p>
-
-              <details>
-                <summary>Details</summary>
-                <p style="margin-top:8px">
-                  Top customers, sales by artist/genre, and reporting-ready tables for visualization.
-                </p>
-                <div class="tags">
-                  <span class="tag">Aggregations</span><span class="tag">Insights</span><span class="tag">Reporting</span>
-                </div>
-              </details>
-
-              <div style="margin-top:auto; padding-top:8px">
-                <a href="https://github.com/Gaw31/SQL/blob/main/Chinook%20Data" target="_blank" rel="noopener">View on GitHub →</a>
-              </div>
-            </article>
-          </div>
-        </section>
-      </div>
-
-      <!-- Certificates + Excel -->
-      <section class="showcase">
-        <div class="showcase-head">
-          <div>
-            <b>Certificates & Excel</b><br>
-            <span>Quick proof + one Excel project snapshot.</span>
-          </div>
-          <a class="btn" href="assets/files/" target="_blank" rel="noopener">Files folder →</a>
-        </div>
-
-        <div class="showcase-grid">
-          <!-- Certificates -->
-          <div class="showcase-card">
-            <h3>Certificates</h3>
-            <div class="cert-list" style="margin-top:10px;">
-              <a class="cert-item" href="assets/files/Data_Analyst_Certificate.pdf" target="_blank" rel="noopener">
-                <div>
-                  <div class="cert-title">Data Analyst Certificate</div>
-                  <div class="cert-meta">PDF · Click to view</div>
-                </div>
-                <span class="arrow">↗</span>
-              </a>
-
-              <a class="cert-item" href="assets/files/Amr_Gawesh_CV.pdf" target="_blank" rel="noopener">
-                <div>
-                  <div class="cert-title">CV (PDF)</div>
-                  <div class="cert-meta">Click to view</div>
-                </div>
-                <span class="arrow">↗</span>
-              </a>
-            </div>
-
-            <div class="mini">
-              <span class="mini-chip">Proof of skills</span>
-              <span class="mini-chip">Recruiter-friendly</span>
-              <span class="mini-chip">One-click view</span>
-            </div>
-          </div>
-
-          <!-- Excel -->
-          <div class="showcase-card">
-            <div style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
-              <h3 style="margin:0;">Excel Project</h3>
-              <a class="btn" href="assets/files/Road_Accident_Dashboard.xlsx" target="_blank" rel="noopener">Download Excel</a>
-            </div>
-
-            <a class="excel-shot" href="assets/images/excel-road-accident-dashboard.png" target="_blank" rel="noopener" style="margin-top:10px;">
-              <img src="assets/images/excel-road-accident-dashboard.png" alt="Excel Road Accident Dashboard">
-              <div class="shot-overlay">
-                <div class="shot-title">Road Accident Dashboard</div>
-                <div class="shot-meta">Excel · Pivot Charts · Slicers</div>
-              </div>
-            </a>
-
-            <div class="mini">
-              <span class="mini-chip">Dashboard design</span>
-              <span class="mini-chip">Slicers</span>
-              <span class="mini-chip">KPI tracking</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Power BI Dashboard Embed -->
-      <section class="dashboard">
-        <div class="dashboard-head">
-          <div>
-            <b>Live Power BI Dashboard</b><br>
-            <span>Embedded interactive report (updated regularly).</span>
-          </div>
-
+        <nav class="actions">
+          <a class="btn" href="Amr_Gawesh_CV.pdf" target="_blank" rel="noopener">CV (PDF) ↗</a>
+          <a class="btn" href="assets/files/Data_Analyst_Certificate.pdf" target="_blank" rel="noopener">Certificate ↗</a>
           <a class="btn primary"
              href="https://app.powerbi.com/view?r=eyJrIjoiNjQ1MzBmZWItZGNkNy00MzQ3LWJlYTQtYzA1YTQ0YzVjYzI0IiwidCI6IjIzZGI2ZTA2LTA1YzQtNDg5ZC1iMTM2LWNiYTk0YThlNmYzNiIsImMiOjh9"
-             target="_blank" rel="noopener">
-            Open Full Screen
+             target="_blank" rel="noopener">Open Power BI</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section>
+    <div class="container">
+      <div class="hero">
+        <h1>Data projects that ship.</h1>
+        <p class="subtitle">
+          I build reporting-ready datasets and dashboards: clean data, design metrics, and communicate insights.
+        </p>
+
+        <div class="chips">
+          <span class="chip">SQL cleaning pipelines</span>
+          <span class="chip">KPI reporting queries</span>
+          <span class="chip">Power BI modeling + DAX</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section>
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <b>Featured projects</b><br>
+          <span>Skim fast — open details only if needed</span>
+        </div>
+        <span></span>
+      </div>
+
+      <div class="cards">
+        <article class="card">
+          <h3>Layoffs Data Cleaning Pipeline (SQL)</h3>
+          <p>End-to-end cleaning workflow to make a real dataset reporting-ready.</p>
+
+          <details>
+            <summary>Details</summary>
+            <p style="margin-top:8px">
+              Removed duplicates, standardized fields, handled nulls, validated quality checks, and created views for dashboarding.
+            </p>
+            <div class="tags">
+              <span class="tag">Cleaning</span><span class="tag">QA checks</span><span class="tag">Views</span>
+            </div>
+          </details>
+
+          <div style="margin-top:auto; padding-top:8px">
+            <a href="https://github.com/Gaw31/SQL/blob/main/World_layoffs%20Projects%20(Data%20Cleaning)" target="_blank" rel="noopener">
+              View on GitHub →
+            </a>
+          </div>
+        </article>
+
+        <article class="card">
+          <h3>Customer & Order Analytics (SQL Reporting)</h3>
+          <p>KPI-style outputs for recurring reporting and dashboard foundations.</p>
+
+          <details>
+            <summary>Details</summary>
+            <p style="margin-top:8px">
+              Built queries for order counts, revenue by product/location, spend patterns, and trend-style outputs.
+            </p>
+            <div class="tags">
+              <span class="tag">KPIs</span><span class="tag">Joins</span><span class="tag">Trends</span>
+            </div>
+          </details>
+
+          <div style="margin-top:auto; padding-top:8px">
+            <a href="https://github.com/Gaw31/SQL/blob/main/Customer%20and%20Order%20Analytics" target="_blank" rel="noopener">
+              View on GitHub →
+            </a>
+          </div>
+        </article>
+
+        <article class="card">
+          <h3>Chinook Music Store Analysis (SQL)</h3>
+          <p>Business questions answered with joins, aggregations, and clear outputs.</p>
+
+          <details>
+            <summary>Details</summary>
+            <p style="margin-top:8px">
+              Top customers, sales by artist/genre, and reporting-ready tables for visualization.
+            </p>
+            <div class="tags">
+              <span class="tag">Aggregations</span><span class="tag">Insights</span><span class="tag">Reporting</span>
+            </div>
+          </details>
+
+          <div style="margin-top:auto; padding-top:8px">
+            <a href="https://github.com/Gaw31/SQL/blob/main/Chinook%20Data" target="_blank" rel="noopener">
+              View on GitHub →
+            </a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATES + EXCEL -->
+  <section>
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <b>Certificates & Excel</b><br>
+          <span>Quick proof + one Excel project snapshot.</span>
+        </div>
+        <a class="btn" href="assets/files/" target="_blank" rel="noopener">Files folder →</a>
+      </div>
+
+      <div class="showcase-grid">
+        <div class="showcase-card">
+          <h3>Certificates</h3>
+
+          <div class="cert-list" style="margin-top:10px;">
+            <a class="cert-item" href="assets/files/Data_Analyst_Certificate.pdf" target="_blank" rel="noopener">
+              <div>
+                <div class="cert-title">Data Analyst Certificate</div>
+                <div class="cert-meta">PDF · Click to view</div>
+              </div>
+              <span class="arrow">↗</span>
+            </a>
+
+            <a class="cert-item" href="Amr_Gawesh_CV.pdf" target="_blank" rel="noopener">
+              <div>
+                <div class="cert-title">CV (PDF)</div>
+                <div class="cert-meta">Click to view</div>
+              </div>
+              <span class="arrow">↗</span>
+            </a>
+          </div>
+
+          <div class="mini">
+            <span class="mini-chip">Proof of skills</span>
+            <span class="mini-chip">Recruiter-friendly</span>
+            <span class="mini-chip">One-click view</span>
+          </div>
+        </div>
+
+        <div class="showcase-card">
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
+            <h3 style="margin:0;">Excel Project</h3>
+            <a class="btn" href="assets/files/Road_Accident_Dashboard.xlsx" target="_blank" rel="noopener">Download Excel</a>
+          </div>
+
+          <a class="excel-shot" href="assets/images/excel-road-accident-dashboard.png" target="_blank" rel="noopener">
+            <img src="assets/images/excel-road-accident-dashboard.png" alt="Excel Road Accident Dashboard">
+            <div class="shot-overlay">
+              <div class="shot-title">Road Accident Dashboard</div>
+              <div class="shot-meta">Excel · Pivot Charts · Slicers</div>
+            </div>
           </a>
+
+          <div class="mini">
+            <span class="mini-chip">Dashboard design</span>
+            <span class="mini-chip">Slicers</span>
+            <span class="mini-chip">KPI tracking</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- POWER BI -->
+  <section>
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <b>Live Power BI Dashboard</b><br>
+          <span>Embedded interactive report (updated regularly).</span>
         </div>
 
-        <div class="embed-wrap">
-          <iframe
-            title="Portfolio Dashboard V1"
-            src="https://app.powerbi.com/view?r=eyJrIjoiNjQ1MzBmZWItZGNkNy00MzQ3LWJlYTQtYzA1YTQ0YzVjYzI0IiwidCI6IjIzZGI2ZTA2LTA1YzQtNDg5ZC1iMTM2LWNiYTk0YThlNmYzNiIsImMiOjh9"
-            frameborder="0"
-            allowfullscreen="true">
-          </iframe>
-        </div>
+        <a class="btn primary"
+           href="https://app.powerbi.com/view?r=eyJrIjoiNjQ1MzBmZWItZGNkNy00MzQ3LWJlYTQtYzA1YTQ0YzVjYzI0IiwidCI6IjIzZGI2ZTA2LTA1YzQtNDg5ZC1iMTM2LWNiYTk0YThlNmYzNiIsImMiOjh9"
+           target="_blank" rel="noopener">Open Full Screen</a>
+      </div>
 
-        <div class="embed-actions">
-          <span style="color: var(--muted); font-size:12px;">Tip: Use filters inside the report to explore.</span>
-        </div>
-      </section>
+      <div class="embed-wrap">
+        <iframe
+          title="Portfolio Dashboard V1"
+          src="https://app.powerbi.com/view?r=eyJrIjoiNjQ1MzBmZWItZGNkNy00MzQ3LWJlYTQtYzA1YTQ0YzVjYzI0IiwidCI6IjIzZGI2ZTA2LTA1YzQtNDg5ZC1iMTM2LWNiYTk0YThlNmYzNiIsImMiOjh9"
+          frameborder="0"
+          allowfullscreen="true">
+        </iframe>
+      </div>
 
-      <div class="footer">
+      <div style="display:flex; justify-content:flex-end; padding-top:10px;">
+        <span style="color: var(--muted); font-size:12px;">Tip: Use filters inside the report to explore.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
         <div>Contact: <b style="color:rgba(255,255,255,0.86)">amrsgaw@yahoo.com</b></div>
         <div>
           <a href="https://www.linkedin.com/in/amr-gawesh/" target="_blank" rel="noopener">LinkedIn</a>
@@ -648,8 +612,8 @@
           <a href="https://github.com/Gaw31" target="_blank" rel="noopener">GitHub</a>
         </div>
       </div>
-
     </div>
-  </div>
+  </footer>
+
 </body>
 </html>
