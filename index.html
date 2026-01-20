@@ -10,9 +10,8 @@
 
   <style>
     :root{
-      --bg: #0b1220;
+      --bg: #0b1220; /* ✅ single background color */
       --panel: rgba(255,255,255,0.06);
-      --panel2: rgba(255,255,255,0.08);
       --text: rgba(255,255,255,0.92);
       --muted: rgba(255,255,255,0.68);
       --line: rgba(255,255,255,0.12);
@@ -24,19 +23,19 @@
     }
 
     *{box-sizing:border-box}
+    html{ scroll-behavior: smooth; }
     html, body{height:100%}
+
     body{
       margin:0;
       font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       color: var(--text);
-      background:
-        radial-gradient(1200px 600px at 15% 10%, rgba(85,214,255,0.14), transparent 60%),
-        radial-gradient(900px 500px at 85% 15%, rgba(138,125,255,0.14), transparent 55%),
-        radial-gradient(900px 700px at 50% 100%, rgba(255,255,255,0.06), transparent 60%),
-        var(--bg);
+
+      /* ✅ solid background — no splitting */
+      background: var(--bg);
+      background-attachment: fixed;
     }
 
-    /* Layout helpers */
     .container{
       width: min(var(--maxw), 100%);
       margin: 0 auto;
@@ -45,29 +44,23 @@
 
     section{ padding: 44px 0; }
 
-    .surface{
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.03);
-      border-radius: calc(var(--radius) + 8px);
-      box-shadow: var(--shadow);
-      overflow: hidden;
-    }
-
-    /* Topbar (now full page + sticky) */
+    /* Sticky Navbar */
     .topbar{
       position: sticky;
       top: 0;
       z-index: 50;
       border-bottom: 1px solid var(--line);
-      background: rgba(0,0,0,0.30);
-      backdrop-filter: blur(12px);
+
+      /* ✅ match background exactly */
+      background: var(--bg);
+      backdrop-filter: none;
     }
 
     .topbar-inner{
       display:flex;
       align-items:center;
       justify-content:space-between;
-      padding: 16px 0;
+      padding: 14px 0;
       gap: 12px;
     }
 
@@ -82,6 +75,7 @@
       width: 12px; height:12px; border-radius: 999px;
       background: linear-gradient(135deg, var(--accent), var(--accent2));
       box-shadow: 0 0 20px rgba(85,214,255,0.35);
+      flex: 0 0 auto;
     }
 
     .name{
@@ -92,6 +86,7 @@
 
     .actions{
       display:flex;
+      align-items:center;
       gap:10px;
       flex-wrap:wrap;
       justify-content:flex-end;
@@ -125,7 +120,35 @@
       color: #08101f;
     }
 
-    /* Hero (full-width section) */
+    /* Anchor menu */
+    .menu{
+      display:flex;
+      gap: 6px;
+      align-items:center;
+      padding: 6px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.03);
+    }
+    .menu a{
+      display:inline-flex;
+      align-items:center;
+      padding: 8px 10px;
+      border-radius: 12px;
+      text-decoration:none;
+      color: rgba(255,255,255,0.88);
+      font-weight: 700;
+      font-size: 12.5px;
+      border: 1px solid transparent;
+      transition: background .15s ease, border-color .15s ease, transform .15s ease;
+    }
+    .menu a:hover{
+      background: rgba(255,255,255,0.06);
+      border-color: rgba(255,255,255,0.10);
+      transform: translateY(-1px);
+    }
+
+    /* Hero */
     .hero{
       border: 1px solid var(--line);
       background: rgba(255,255,255,0.04);
@@ -135,17 +158,8 @@
       overflow:hidden;
     }
 
-    .hero:before{
-      content:"";
-      position:absolute;
-      inset:-2px;
-      background: radial-gradient(700px 180px at 10% 10%, rgba(85,214,255,0.22), transparent 60%),
-                  radial-gradient(700px 200px at 80% 20%, rgba(138,125,255,0.22), transparent 60%);
-      pointer-events:none;
-      opacity:.85;
-    }
-
-    .hero > *{position:relative}
+    /* ✅ removed glow overlay that caused color shifting */
+    .hero:before{ display:none; }
 
     h1{
       margin: 0 0 10px;
@@ -176,7 +190,6 @@
       background: rgba(255,255,255,0.03);
     }
 
-    /* Section headings */
     .section-head{
       display:flex;
       align-items:flex-end;
@@ -187,7 +200,7 @@
     .section-head b{ font-size: 13px; color: rgba(255,255,255,0.85); }
     .section-head span{ font-size: 12px; color: var(--muted); }
 
-    /* Projects grid */
+    /* Projects */
     .cards{
       display:grid;
       grid-template-columns: repeat(3, minmax(240px, 1fr));
@@ -205,11 +218,7 @@
       min-height: 190px;
     }
 
-    .card h3{
-      margin:0;
-      font-size: 14px;
-      letter-spacing: -0.2px;
-    }
+    .card h3{ margin:0; font-size: 14px; }
     .card p{
       margin:0;
       color: var(--muted);
@@ -267,11 +276,7 @@
       padding: 12px;
     }
 
-    .showcase-card h3{
-      margin:0;
-      font-size: 14px;
-      letter-spacing: -0.2px;
-    }
+    .showcase-card h3{ margin:0; font-size: 14px; }
 
     .cert-list{ display:flex; flex-direction:column; gap: 10px; }
 
@@ -342,7 +347,7 @@
       color: rgba(255,255,255,0.82);
     }
 
-    /* Dashboard embed */
+    /* Dashboard */
     .embed-wrap{
       position: relative;
       width: 100%;
@@ -379,9 +384,14 @@
     /* Responsive */
     @media (max-width: 980px){
       h1{ font-size: 28px; }
-      .cards{
-        grid-template-columns: 1fr;
+      .cards{ grid-template-columns: 1fr; }
+      .menu{
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
       }
+      .menu a{ white-space: nowrap; }
       .showcase-grid{ grid-template-columns: 1fr; }
     }
   </style>
@@ -389,7 +399,7 @@
 
 <body>
 
-  <!-- Sticky Navbar -->
+  <!-- Sticky Navbar + Anchor Menu -->
   <header class="topbar">
     <div class="container">
       <div class="topbar-inner">
@@ -402,8 +412,15 @@
         </div>
 
         <nav class="actions">
+          <div class="menu" aria-label="Page sections">
+            <a href="#projects">Projects</a>
+            <a href="#certs">Certificates</a>
+            <a href="#excel">Excel</a>
+            <a href="#dashboard">Power BI</a>
+            <a href="#contact">Contact</a>
+          </div>
+
           <a class="btn" href="Amr_Gawesh_CV.pdf" target="_blank" rel="noopener">CV (PDF) ↗</a>
-          <a class="btn" href="assets/files/Data_Analyst_Certificate.pdf" target="_blank" rel="noopener">Certificate ↗</a>
           <a class="btn primary"
              href="https://app.powerbi.com/view?r=eyJrIjoiNjQ1MzBmZWItZGNkNy00MzQ3LWJlYTQtYzA1YTQ0YzVjYzI0IiwidCI6IjIzZGI2ZTA2LTA1YzQtNDg5ZC1iMTM2LWNiYTk0YThlNmYzNiIsImMiOjh9"
              target="_blank" rel="noopener">Open Power BI</a>
@@ -413,7 +430,7 @@
   </header>
 
   <!-- HERO -->
-  <section>
+  <section id="top">
     <div class="container">
       <div class="hero">
         <h1>Data projects that ship.</h1>
@@ -431,14 +448,13 @@
   </section>
 
   <!-- PROJECTS -->
-  <section>
+  <section id="projects">
     <div class="container">
       <div class="section-head">
         <div>
           <b>Featured projects</b><br>
           <span>Skim fast — open details only if needed</span>
         </div>
-        <span></span>
       </div>
 
       <div class="cards">
@@ -520,7 +536,8 @@
       </div>
 
       <div class="showcase-grid">
-        <div class="showcase-card">
+        <!-- Certificates -->
+        <div class="showcase-card" id="certs">
           <h3>Certificates</h3>
 
           <div class="cert-list" style="margin-top:10px;">
@@ -548,7 +565,8 @@
           </div>
         </div>
 
-        <div class="showcase-card">
+        <!-- Excel -->
+        <div class="showcase-card" id="excel">
           <div style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
             <h3 style="margin:0;">Excel Project</h3>
             <a class="btn" href="assets/files/Road_Accident_Dashboard.xlsx" target="_blank" rel="noopener">Download Excel</a>
@@ -573,7 +591,7 @@
   </section>
 
   <!-- POWER BI -->
-  <section>
+  <section id="dashboard">
     <div class="container">
       <div class="section-head">
         <div>
@@ -602,7 +620,7 @@
   </section>
 
   <!-- FOOTER -->
-  <footer>
+  <footer id="contact">
     <div class="container">
       <div class="footer-inner">
         <div>Contact: <b style="color:rgba(255,255,255,0.86)">amrsgaw@yahoo.com</b></div>
