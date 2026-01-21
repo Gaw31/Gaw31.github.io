@@ -390,6 +390,64 @@
       .menu a{ white-space: nowrap; }
       .showcase-grid{ grid-template-columns: 1fr; }
     }
+/* =========================
+   MOBILE FIX (Phone layout)
+   ========================= */
+@media (max-width: 600px){
+
+  /* Make the header layout stack nicely */
+  .topbar-inner{
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 12px 0;
+  }
+
+  /* Make actions row full width */
+  .actions{
+    width: 100%;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+  /* Move menu into its own row and allow swipe */
+  .menu{
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding: 6px;
+  }
+  .menu::-webkit-scrollbar{ display:none; }
+  .menu a{ white-space: nowrap; }
+
+  /* Buttons become smaller and fit nicely */
+  .btn{
+    padding: 9px 10px;
+    font-size: 12.5px;
+    border-radius: 12px;
+  }
+
+  /* Reduce extra spacing */
+  section{ padding: 12px 0; }
+  .block{ padding: 14px; }
+
+  /* Improve brand text */
+  .name b{ font-size: 15px; }
+  .name span{ font-size: 12px; }
+
+  /* Hero heading smaller */
+  h1{ font-size: 26px; }
+
+  /* Projects: reduce card height */
+  .card{
+    min-height: auto;
+    padding: 12px;
+  }
+
+  /* Ensure anchor links don’t go under sticky topbar */
+  section{ scroll-margin-top: 120px; }
+}
   </style>
 </head>
 
